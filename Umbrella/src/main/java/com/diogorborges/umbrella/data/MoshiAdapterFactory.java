@@ -1,4 +1,4 @@
-package com.foo.umbrella.data;
+package com.diogorborges.umbrella.data;
 
 import com.squareup.moshi.JsonAdapter;
 

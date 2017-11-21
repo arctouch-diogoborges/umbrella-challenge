@@ -1,8 +1,8 @@
-package com.foo.umbrella.ui;
+package com.diogorborges.umbrella.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import com.foo.umbrella.R;
+import com.diogorborges.umbrella.R;
 
 public class MainActivity extends AppCompatActivity {
 

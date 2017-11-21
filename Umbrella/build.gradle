@@ -20,8 +20,8 @@ apply plugin: 'com.github.ben-manes.versions'
 // Use `com.foo.umbrella.weatherundergroundapikey` in gradle.properties or as a command line
 // parameter or `WEATHER_UNDERGROUND_API_KEY` as a System Environment variable to provide weather
 // underground api key to this project
-ext.weatherUndergroundApiKey = project.hasProperty('com.foo.umbrella.weatherundergroundapikey')?
-    project.getProperty('com.foo.umbrella.weatherundergroundapikey'):
+ext.weatherUndergroundApiKey = project.hasProperty('com.diogorborges.umbrella.weatherundergroundapikey')?
+    project.getProperty('com.diogorborges.umbrella.weatherundergroundapikey'):
     System.getenv('WEATHER_UNDERGROUND_API_KEY')?:''
 
 android {
@@ -38,7 +38,7 @@ android {
   }
 
   defaultConfig {
-    applicationId "com.foo.umbrella"
+    applicationId "com.diogorborges.umbrella"
     minSdkVersion 19
     targetSdkVersion 25
     versionCode 1

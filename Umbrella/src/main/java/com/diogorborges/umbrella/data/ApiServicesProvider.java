@@ -1,8 +1,8 @@
-package com.foo.umbrella.data;
+package com.diogorborges.umbrella.data;
 
 import android.app.Application;
 import com.jakewharton.picasso.OkHttp3Downloader;
-import com.foo.umbrella.data.api.WeatherService;
+import com.diogorborges.umbrella.data.api.WeatherService;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
 import java.io.File;

@@ -1,4 +1,4 @@
-package com.foo.umbrella;
+package com.diogorborges.umbrella;
 
 import android.app.Application;
 

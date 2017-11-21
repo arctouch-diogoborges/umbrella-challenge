@@ -1,7 +1,8 @@
-package com.foo.umbrella.data.api;
+package com.diogorborges.umbrella.data.api;
 
-import com.foo.umbrella.BuildConfig;
-import com.foo.umbrella.data.model.WeatherData;
+import com.diogorborges.umbrella.BuildConfig;
+import com.diogorborges.umbrella.data.model.WeatherData;
+
 import retrofit2.Call;
 import retrofit2.adapter.rxjava.Result;
 import retrofit2.http.GET;
