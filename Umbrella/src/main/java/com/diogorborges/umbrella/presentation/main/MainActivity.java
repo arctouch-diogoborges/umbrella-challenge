@@ -1,4 +1,4 @@
-package com.diogorborges.umbrella.ui;
+package com.diogorborges.umbrella.presentation.main;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

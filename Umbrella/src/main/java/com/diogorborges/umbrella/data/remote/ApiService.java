@@ -1,4 +1,4 @@
-package com.diogorborges.umbrella.data.api;
+package com.diogorborges.umbrella.data.remote;
 
 import com.diogorborges.umbrella.BuildConfig;
 import com.diogorborges.umbrella.data.model.WeatherData;
@@ -12,7 +12,7 @@ import rx.Observable;
 /**
  * Retrofit interface for fetching weather data
  */
-public interface WeatherService {
+public interface ApiService {
 
     /**
      * Get the forecast for a given zip code using {@link Call}
