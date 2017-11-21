@@ -1,3 +1,4 @@
+
 package com.diogorborges.umbrella.data.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,36 +14,49 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "english",
-        "metric"
+        "version",
+        "termsofService",
+        "features"
 })
-public class Temp {
+public class Response {
 
-    @JsonProperty("english")
-    private String english;
-    @JsonProperty("metric")
-    private String metric;
+    @JsonProperty("version")
+    private String version;
+    @JsonProperty("termsofService")
+    private String termsofService;
+    @JsonProperty("features")
+    private Features features;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("english")
-    public String getEnglish() {
-        return english;
+    @JsonProperty("version")
+    public String getVersion() {
+        return version;
     }
 
-    @JsonProperty("english")
-    public void setEnglish(String english) {
-        this.english = english;
+    @JsonProperty("version")
+    public void setVersion(String version) {
+        this.version = version;
     }
 
-    @JsonProperty("metric")
-    public String getMetric() {
-        return metric;
+    @JsonProperty("termsofService")
+    public String getTermsofService() {
+        return termsofService;
     }
 
-    @JsonProperty("metric")
-    public void setMetric(String metric) {
-        this.metric = metric;
+    @JsonProperty("termsofService")
+    public void setTermsofService(String termsofService) {
+        this.termsofService = termsofService;
+    }
+
+    @JsonProperty("features")
+    public Features getFeatures() {
+        return features;
+    }
+
+    @JsonProperty("features")
+    public void setFeatures(Features features) {
+        this.features = features;
     }
 
     @JsonAnyGetter

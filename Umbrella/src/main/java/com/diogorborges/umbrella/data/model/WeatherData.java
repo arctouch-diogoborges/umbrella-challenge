@@ -17,6 +17,13 @@ public class WeatherData {
   @JsonProperty("hourly_forecast")
   private List<ForecastCondition> forecast;
 
+  @JsonProperty("response")
+  private Response response;
+
+  public Response getResponse() {
+    return response;
+  }
+
   public CurrentObservation getCurrentObservation() {
     return currentObservation;
   }

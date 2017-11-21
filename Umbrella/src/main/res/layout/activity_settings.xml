@@ -15,7 +15,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/et_zipCode"
+        android:id="@+id/editText_zipCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/transparent"
@@ -36,7 +36,7 @@
         android:textSize="20sp" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/spinner_units"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/transparent"
@@ -53,11 +53,18 @@
         android:layout_height="match_parent"
         android:gravity="bottom">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
         <Button
-            android:id="@+id/btn_update_zipCode"
+
+            android:background="@android:color/transparent"
+            android:id="@+id/button_update_zipCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_update_zipcode" />
+            android:text="@string/button_save" />
     </RelativeLayout>
 
 </LinearLayout>

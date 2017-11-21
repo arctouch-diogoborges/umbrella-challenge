@@ -14,26 +14,13 @@ import static com.diogorborges.umbrella.util.Constants.CELCIUS;
 
 public class SettingsPresenter implements SettingsContract.Presenter {
 
-    private static final String TAG = "SettingsPresenter";
+    private Context context;
 
     private SettingsContract.View view;
-
-    private Context context;
 
     @Inject
     public SettingsPresenter(@Named("applicationContext") Context context) {
         this.context = context;
-    }
-
-    @Override
-    public void start() {
-        SharedPreferences settings = context.getSharedPreferences(UmbrellaPreferences.umbrellaPrefsFile, 0);
-
-        String zipCode = loadZipCode(settings);
-        int unitSelection = loadUnits(settings);
-
-        view.setSelectedZipCode(zipCode);
-        view.setSelectedUnit(unitSelection);
     }
 
     private String loadZipCode(SharedPreferences settings) {
@@ -67,6 +54,17 @@ public class SettingsPresenter implements SettingsContract.Presenter {
     @Override
     public void onViewResumed(SettingsContract.View view) {
         attachedView(view);
+        loadSettings(view);
+    }
+
+    private void loadSettings(SettingsContract.View view) {
+        SharedPreferences settings = context.getSharedPreferences(UmbrellaPreferences.umbrellaPrefsFile, 0);
+
+        String zipCode = loadZipCode(settings);
+        int unitSelection = loadUnits(settings);
+
+        view.setSelectedZipCode(zipCode);
+        view.setSelectedUnit(unitSelection);
     }
 
     private void attachedView(SettingsContract.View view) {

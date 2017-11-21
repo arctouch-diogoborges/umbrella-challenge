@@ -31,22 +31,18 @@ public class NetModule {
     @Provides
     @Singleton
     Interceptor provideAuthenticationInterceptor() {
-        return new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request original = chain.request();
-                HttpUrl originalHttpUrl = original.url();
+        return chain -> {
+            Request original = chain.request();
+            HttpUrl originalHttpUrl = original.url();
 
-                HttpUrl url = originalHttpUrl.newBuilder()
-//                        .addQueryParameter("api_key", BuildConfig.API_KEY)
-                        .build();
+            HttpUrl url = originalHttpUrl.newBuilder()
+                    .build();
 
-                Request.Builder requestBuilder = original.newBuilder()
-                        .url(url);
+            Request.Builder requestBuilder = original.newBuilder()
+                    .url(url);
 
-                Request request = requestBuilder.build();
-                return chain.proceed(request);
-            }
+            Request request = requestBuilder.build();
+            return chain.proceed(request);
         };
     }
 
@@ -76,8 +72,7 @@ public class NetModule {
     @Provides
     @Singleton
     public Retrofit provideRetrofit(JacksonConverterFactory jacksonConverterFactory,
-                                    OkHttpClient okHttpClient,
-                                    @Named("applicationContext") Context context) {
+                                    OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.API_URL)
                 .client(okHttpClient)

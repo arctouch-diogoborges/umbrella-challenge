@@ -1,7 +1,5 @@
 package com.diogorborges.umbrella.data.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -13,36 +11,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "english",
-        "metric"
+        "dir",
+        "degrees"
 })
-public class Temp {
+public class Wdir {
 
-    @JsonProperty("english")
-    private String english;
-    @JsonProperty("metric")
-    private String metric;
+    @JsonProperty("dir")
+    private String dir;
+    @JsonProperty("degrees")
+    private String degrees;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("english")
-    public String getEnglish() {
-        return english;
+    @JsonProperty("dir")
+    public String getDir() {
+        return dir;
     }
 
-    @JsonProperty("english")
-    public void setEnglish(String english) {
-        this.english = english;
+    @JsonProperty("dir")
+    public void setDir(String dir) {
+        this.dir = dir;
     }
 
-    @JsonProperty("metric")
-    public String getMetric() {
-        return metric;
+    @JsonProperty("degrees")
+    public String getDegrees() {
+        return degrees;
     }
 
-    @JsonProperty("metric")
-    public void setMetric(String metric) {
-        this.metric = metric;
+    @JsonProperty("degrees")
+    public void setDegrees(String degrees) {
+        this.degrees = degrees;
     }
 
     @JsonAnyGetter

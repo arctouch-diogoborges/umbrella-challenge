@@ -12,8 +12,6 @@ public interface SettingsContract {
 
     interface Presenter {
 
-        void start();
-
         void onViewResumed(SettingsContract.View view);
 
         void onViewPaused(SettingsContract.View view);

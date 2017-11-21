@@ -20,11 +20,11 @@ public interface MainContract {
 
         void clearForecastRecyclerView();
 
+        void showRecycler();
+
     }
 
     interface Presenter {
-
-        void start();
 
         void onViewResumed(View view);
 

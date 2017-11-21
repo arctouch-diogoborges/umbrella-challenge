@@ -1,3 +1,4 @@
+
 package com.diogorborges.umbrella.data.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,36 +14,49 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "english",
-        "metric"
+        "url",
+        "title",
+        "link"
 })
-public class Temp {
+public class Image {
 
-    @JsonProperty("english")
-    private String english;
-    @JsonProperty("metric")
-    private String metric;
+    @JsonProperty("url")
+    private String url;
+    @JsonProperty("title")
+    private String title;
+    @JsonProperty("link")
+    private String link;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("english")
-    public String getEnglish() {
-        return english;
+    @JsonProperty("url")
+    public String getUrl() {
+        return url;
     }
 
-    @JsonProperty("english")
-    public void setEnglish(String english) {
-        this.english = english;
+    @JsonProperty("url")
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    @JsonProperty("metric")
-    public String getMetric() {
-        return metric;
+    @JsonProperty("title")
+    public String getTitle() {
+        return title;
     }
 
-    @JsonProperty("metric")
-    public void setMetric(String metric) {
-        this.metric = metric;
+    @JsonProperty("title")
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @JsonProperty("link")
+    public String getLink() {
+        return link;
+    }
+
+    @JsonProperty("link")
+    public void setLink(String link) {
+        this.link = link;
     }
 
     @JsonAnyGetter

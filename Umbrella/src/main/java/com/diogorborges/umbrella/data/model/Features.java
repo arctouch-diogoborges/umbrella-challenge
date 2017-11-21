@@ -1,6 +1,5 @@
-package com.diogorborges.umbrella.data.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.diogorborges.umbrella.data.model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,36 +12,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "english",
-        "metric"
+        "conditions",
+        "hourly"
 })
-public class Temp {
+public class Features {
 
-    @JsonProperty("english")
-    private String english;
-    @JsonProperty("metric")
-    private String metric;
+    @JsonProperty("conditions")
+    private Integer conditions;
+    @JsonProperty("hourly")
+    private Integer hourly;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("english")
-    public String getEnglish() {
-        return english;
+    @JsonProperty("conditions")
+    public Integer getConditions() {
+        return conditions;
     }
 
-    @JsonProperty("english")
-    public void setEnglish(String english) {
-        this.english = english;
+    @JsonProperty("conditions")
+    public void setConditions(Integer conditions) {
+        this.conditions = conditions;
     }
 
-    @JsonProperty("metric")
-    public String getMetric() {
-        return metric;
+    @JsonProperty("hourly")
+    public Integer getHourly() {
+        return hourly;
     }
 
-    @JsonProperty("metric")
-    public void setMetric(String metric) {
-        this.metric = metric;
+    @JsonProperty("hourly")
+    public void setHourly(Integer hourly) {
+        this.hourly = hourly;
     }
 
     @JsonAnyGetter

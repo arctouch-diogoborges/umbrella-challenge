@@ -1,7 +1,5 @@
 package com.diogorborges.umbrella.data.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -16,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "english",
         "metric"
 })
-public class Temp {
+public class Wspd {
 
     @JsonProperty("english")
     private String english;
@@ -56,3 +54,4 @@ public class Temp {
     }
 
 }
+

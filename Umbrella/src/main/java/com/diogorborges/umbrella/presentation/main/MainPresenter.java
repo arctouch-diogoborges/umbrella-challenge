@@ -11,7 +11,6 @@ import com.diogorborges.umbrella.data.model.CurrentObservation;
 import com.diogorborges.umbrella.data.model.ForecastCondition;
 import com.diogorborges.umbrella.data.model.WeatherData;
 import com.diogorborges.umbrella.data.usecase.GetForecastByZipCode;
-import com.diogorborges.umbrella.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,16 +28,16 @@ public class MainPresenter implements MainContract.Presenter {
 
     private static final String TAG = "MainPresenter";
 
-    private GetForecastByZipCode getForecastByZipCode;
-
-    private MainContract.View view;
-
-    private Context context;
+    private static final int FAHRENHEIT_TEMP_LIMIT = 60;
+    private static final int CELCIUS_TEMP_LIMIT = 15;
 
     private ArrayList<Integer> dayList = new ArrayList<>();
 
-    private static final int FAHRENHEIT_TEMP_LIMIT = 60;
-    private static final int CELCIUS_TEMP_LIMIT = 15;
+    private Context context;
+
+    private GetForecastByZipCode getForecastByZipCode;
+
+    private MainContract.View view;
 
     @Inject
     public MainPresenter(@Named("applicationContext") Context context, GetForecastByZipCode getForecastByZipCode) {
@@ -46,15 +45,8 @@ public class MainPresenter implements MainContract.Presenter {
         this.getForecastByZipCode = getForecastByZipCode;
     }
 
-    @Override
-    public void start() {
-        SharedPreferences settings = context.getSharedPreferences(SharedPreferencesManager.UmbrellaPreferences.umbrellaPrefsFile, 0);
-        if (settings.getString(SharedPreferencesManager.UmbrellaPreferences.zipCode, "").isEmpty()) {
-            view.showSettings();
-        } else {
-            String currentZipCode = settings.getString(SharedPreferencesManager.UmbrellaPreferences.zipCode, "");
-            loadForecastByZipCode(currentZipCode);
-        }
+    private boolean hasZipCode(SharedPreferences settings) {
+        return settings.getString(SharedPreferencesManager.UmbrellaPreferences.zipCode, "").isEmpty();
     }
 
     private void loadForecastByZipCode(String currentZipCode) {
@@ -72,17 +64,20 @@ public class MainPresenter implements MainContract.Presenter {
 
             @Override
             public void onNext(Result<WeatherData> weatherDataResult) {
-                if (isSuccessfulResponse(weatherDataResult)) {
+                if (hasResponse(weatherDataResult)) {
+                    view.showRecycler();
                     WeatherData weatherData = weatherDataResult.response().body();
                     view.clearForecastRecyclerView();
                     createForecastDay(weatherData);
+                } else {
+                    view.showError();
                 }
             }
         });
     }
 
-    private boolean isSuccessfulResponse(Result<WeatherData> weatherDataResult) {
-        return weatherDataResult.response().isSuccessful();
+    private boolean hasResponse(Result<WeatherData> weatherDataResult) {
+        return weatherDataResult.response() != null;
     }
 
     private void createForecastDay(WeatherData weatherData) {
@@ -124,19 +119,24 @@ public class MainPresenter implements MainContract.Presenter {
     private void displayCurrentWeather(WeatherData weather) {
         SharedPreferences settings = context.getSharedPreferences(SharedPreferencesManager.UmbrellaPreferences.umbrellaPrefsFile, 0);
         CurrentObservation currentObservation = weather.getCurrentObservation();
+
         float currentTemp;
 
-        if (settings.getString(SharedPreferencesManager.UmbrellaPreferences.units, "").equals(CELCIUS)) {
-            currentTemp = currentObservation.getTempCelsius();
+        if (isCelcius(settings)) {
+            currentTemp = currentObservation.getTempC();
             view.setCurrentWeatherColor(currentTemp, CELCIUS_TEMP_LIMIT);
         } else {
-            currentTemp = currentObservation.getTempFahrenheit();
+            currentTemp = currentObservation.getTempF();
             view.setCurrentWeatherColor(currentTemp, FAHRENHEIT_TEMP_LIMIT);
         }
 
         view.showCurrentWeatherContent(createCurrentTemperature(currentTemp),
                                        currentObservation.getWeather(),
-                                       currentObservation.getDisplayLocation().getFullName());
+                                       currentObservation.getDisplayLocation().getFull());
+    }
+
+    private boolean isCelcius(SharedPreferences settings) {
+        return settings.getString(SharedPreferencesManager.UmbrellaPreferences.units, "").equals(CELCIUS);
     }
 
     @NonNull
@@ -147,6 +147,17 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void onViewResumed(MainContract.View view) {
         attachedView(view);
+        loadZipCode();
+    }
+
+    private void loadZipCode() {
+        SharedPreferences settings = context.getSharedPreferences(SharedPreferencesManager.UmbrellaPreferences.umbrellaPrefsFile, 0);
+        if (hasZipCode(settings)) {
+            view.showSettings();
+        } else {
+            String currentZipCode = settings.getString(SharedPreferencesManager.UmbrellaPreferences.zipCode, "");
+            loadForecastByZipCode(currentZipCode);
+        }
     }
 
     private void attachedView(MainContract.View view) {
