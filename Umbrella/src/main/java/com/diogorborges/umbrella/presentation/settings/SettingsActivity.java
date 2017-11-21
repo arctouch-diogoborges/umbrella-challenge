@@ -1,5 +1,7 @@
 package com.diogorborges.umbrella.presentation.settings;
 
 
-public class SettingsActivity {
+import android.app.Activity;
+
+public class SettingsActivity extends Activity{
 }

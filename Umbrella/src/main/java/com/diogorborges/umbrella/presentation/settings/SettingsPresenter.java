@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.diogorborges.umbrella.data.local.SharedPreferencesManager;
 import com.diogorborges.umbrella.data.local.SharedPreferencesManager.UmbrellaPreferences;
 
 import javax.inject.Inject;
@@ -26,20 +27,18 @@ public class SettingsPresenter implements SettingsContract.Presenter {
 
     @Override
     public void start() {
-        String zipCode = "";
-        int unitSelection = 0;
-
         SharedPreferences settings = context.getSharedPreferences(UmbrellaPreferences.umbrellaPrefsFile, 0);
 
-        zipCode = loadZipCode(zipCode, settings);
-        unitSelection = loadUnits(settings);
+        String zipCode = loadZipCode(settings);
+        int unitSelection = loadUnits(settings);
 
         view.setSelectedZipCode(zipCode);
         view.setSelectedUnit(unitSelection);
     }
 
-    private String loadZipCode(String zipCode, SharedPreferences settings) {
-        if (settings.getString(UmbrellaPreferences.zipCode, "").isEmpty()) {
+    private String loadZipCode(SharedPreferences settings) {
+        String zipCode = "";
+        if (hasZipCode(settings)) {
             Toast.makeText(context, "Please enter a Zip Code", Toast.LENGTH_SHORT).show();
         } else {
             zipCode = settings.getString(UmbrellaPreferences.zipCode, "");
@@ -47,14 +46,22 @@ public class SettingsPresenter implements SettingsContract.Presenter {
         return zipCode;
     }
 
+    private boolean hasZipCode(SharedPreferences settings) {
+        return settings.getString(UmbrellaPreferences.zipCode, "").isEmpty();
+    }
+
     private int loadUnits(SharedPreferences settings) {
         int unitSelection;
-        if (settings.getString(UmbrellaPreferences.units, "").equals(CELCIUS)) {
+        if (hasUnit(settings)) {
             unitSelection = 0;
         } else {
             unitSelection = 1;
         }
         return unitSelection;
+    }
+
+    private boolean hasUnit(SharedPreferences settings) {
+        return settings.getString(UmbrellaPreferences.units, "").equals(CELCIUS);
     }
 
     @Override
