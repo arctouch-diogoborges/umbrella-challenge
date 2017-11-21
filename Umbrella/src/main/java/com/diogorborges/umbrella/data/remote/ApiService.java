@@ -15,14 +15,9 @@ import rx.Observable;
 public interface ApiService {
 
     /**
-     * Get the forecast for a given zip code using {@link Call}
-     */
-    @GET("/api/" + BuildConfig.API_KEY + "/conditions/hourly/q/{zip}.json")
-    Call<WeatherData> forecastForZipCallable(@Path("zip") String zipCode);
-
-    /**
      * Get the forecast for a given zip code using {@link Observable}
      */
     @GET("/api/" + BuildConfig.API_KEY + "/conditions/hourly/q/{zip}.json")
-    Observable<Result<WeatherData>> forecastForZipObservable(@Path("zip") String zipCode);
+    Observable<Result<WeatherData>> getForecastByZipCode(@Path("zip") String zipCode);
+
 }

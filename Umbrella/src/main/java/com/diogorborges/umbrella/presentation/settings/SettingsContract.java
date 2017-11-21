@@ -1,12 +1,10 @@
 package com.diogorborges.umbrella.presentation.settings;
 
-import com.diogorborges.umbrella.presentation.main.MainContract;
-
 public interface SettingsContract {
 
     interface View {
 
-        void showContent();
+        void showContent(String zipCode, int selectedUnit);
 
         void showError();
 
@@ -19,6 +17,10 @@ public interface SettingsContract {
         void onViewResumed(SettingsContract.View view);
 
         void onViewPaused(SettingsContract.View view);
+
+        void onUserUpdateUnits(String selectedUnit);
+
+        void onUserUpdateZipCode(String selectedZipCode);
 
     }
 

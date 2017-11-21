@@ -40,6 +40,16 @@ public class SettingsPresenter implements SettingsContract.Presenter {
         detachView();
     }
 
+    @Override
+    public void onUserUpdateUnits(String selectedUnit) {
+
+    }
+
+    @Override
+    public void onUserUpdateZipCode(String selectedZipCode) {
+
+    }
+
     private void detachView() {
         this.view = null;
     }
