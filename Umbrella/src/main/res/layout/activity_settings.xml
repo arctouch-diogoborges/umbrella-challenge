@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:text="@string/lbl_zip"
+        android:text="@string/title_zipcode"
         android:textSize="20sp" />
 
     <EditText
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="10dp"
         android:paddingTop="10dp"
-        android:text="@string/lbl_units"
+        android:text="@string/title_units"
         android:textSize="20sp" />
 
     <Spinner
@@ -57,7 +57,7 @@
             android:id="@+id/btn_update_zipCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/update_zipcode" />
+            android:text="@string/button_update_zipcode" />
     </RelativeLayout>
 
 </LinearLayout>

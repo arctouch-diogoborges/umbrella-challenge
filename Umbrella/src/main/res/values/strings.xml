@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Umbrella</string>
-    <string name="update_zipcode">Update Zipcode</string>
+    <string name="button_update_zipcode">Update Zipcode</string>
     <string name="zip_example">55431</string>
-    <string name="lbl_zip">Zip</string>
-    <string name="lbl_units">Units</string>
+    <string name="title_zipcode">Zip</string>
+    <string name="title_units">Units</string>
     <string name="toast_no_zipCode">Please enter a Zip Code</string>
 </resources>
