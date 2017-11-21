@@ -78,8 +78,8 @@ public class CurrentObservation {
   private DisplayLocation displayLocation;
   @JsonProperty("observation_location")
   private ObservationLocation observationLocation;
-  @JsonProperty("estimated")
-  private Estimated estimated;
+//  @JsonProperty("estimated")
+//  private Estimated estimated;
   @JsonProperty("station_id")
   private String stationId;
   @JsonProperty("observation_time")
@@ -215,16 +215,6 @@ public class CurrentObservation {
   @JsonProperty("observation_location")
   public void setObservationLocation(ObservationLocation observationLocation) {
     this.observationLocation = observationLocation;
-  }
-
-  @JsonProperty("estimated")
-  public Estimated getEstimated() {
-    return estimated;
-  }
-
-  @JsonProperty("estimated")
-  public void setEstimated(Estimated estimated) {
-    this.estimated = estimated;
   }
 
   @JsonProperty("station_id")
