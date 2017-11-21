@@ -1,25 +1,33 @@
 package com.diogorborges.umbrella.data.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Represents a forecast weather condition returned from Weather Underground
  *
  * Does not include all available only data- only potentially useful fields are included
  */
-public abstract class ForecastCondition {
+public class ForecastCondition {
 
-  /**
-   * The human-readable name of the condition
-   */
-  public abstract String getCondition();
+  @JsonProperty("FCTTIME")
+  private FCTTIME fCTTIME;
 
-  /**
-   * The temperature that is forecast (in degrees Fahrenheit)
-   */
-  public abstract String getTempFahrenheit();
+  @JsonProperty("temp")
+  private Temp temp;
 
-  /**
-   * The temperature that is forecast (in degrees Celsius)
-   */
-  public abstract String getTempCelsius();
+  @JsonProperty("condition")
+  private String condition;
+
+  public FCTTIME getFCTTIME() {
+    return fCTTIME;
+  }
+
+  public Temp getTemp() {
+    return temp;
+  }
+
+  public String getCondition() {
+    return condition;
+  }
 
 }

@@ -1,5 +1,7 @@
 package com.diogorborges.umbrella.data.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
@@ -7,10 +9,20 @@ import java.util.List;
  *
  * Does not include all available only data- only potentially useful fields are included
  */
-public abstract class WeatherData {
+public class WeatherData {
 
-  public abstract CurrentObservation getCurrentObservation();
+  @JsonProperty("current_observation")
+  private CurrentObservation currentObservation;
 
-  public abstract List<ForecastCondition> getForecast();
+  @JsonProperty("hourly_forecast")
+  private List<ForecastCondition> forecast;
+
+  public CurrentObservation getCurrentObservation() {
+    return currentObservation;
+  }
+
+  public List<ForecastCondition> getForecast() {
+    return forecast;
+  }
 
 }

@@ -5,11 +5,12 @@ package com.diogorborges.umbrella.data.model;
  *
  * Does not include all available only data- only potentially useful fields are included
  */
-public abstract class DisplayLocation {
+public class DisplayLocation {
 
-    /**
-     * @return a String in the form of "City, StateAbbreviation". Ex. "Minneapolis, MN"
-     */
-    public abstract String getFullName(); abstract String getCity();
+    private String fullName;
+
+    public String getFullName() {
+        return fullName;
+    }
 
 }

@@ -1,19 +1,40 @@
 package com.diogorborges.umbrella.data.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Represents the "current_observation" data returned from Weather Underground
  *
  * Does not include all available only data- only potentially useful fields are included
  */
-public abstract class CurrentObservation {
+public class CurrentObservation {
 
-  public abstract DisplayLocation getDisplayLocation();
+  @JsonProperty("display_location")
+  private DisplayLocation displayLocation;
 
-  public abstract String getTempFahrenheit();
+  @JsonProperty("temp_f")
+  private float tempFahrenheit;
 
-  public abstract String getTempCelsius();
+  @JsonProperty("temp_c")
+  private float tempCelsius;
 
-  public abstract String getWeatherDescription();
+  private String weather;
+
+  public DisplayLocation getDisplayLocation() {
+    return displayLocation;
+  }
+
+  public float getTempFahrenheit() {
+    return tempFahrenheit;
+  }
+
+  public float getTempCelsius() {
+    return tempCelsius;
+  }
+
+  public String getWeather() {
+    return weather;
+  }
 
 }
