@@ -20,8 +20,7 @@
         android:layout_gravity="center"
         android:backgroundTint="@color/text_color_primary"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/weather_sunny" />
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/tv_temp"
