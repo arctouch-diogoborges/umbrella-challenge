@@ -17,8 +17,8 @@ import dagger.Provides;
 public class PresentationModule {
 
     @Provides
-    SettingsContract.Presenter providesDetailPresenter() {
-        return new SettingsPresenter();
+    SettingsContract.Presenter providesSettingsPresenter(@Named("applicationContext") Context context) {
+        return new SettingsPresenter(context);
     }
 
     @Provides

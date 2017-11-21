@@ -4,9 +4,9 @@ public interface SettingsContract {
 
     interface View {
 
-        void showContent(String zipCode, int selectedUnit);
+        void setSelectedZipCode(String zipCode);
 
-        void showError();
+        void setSelectedUnit(int unit);
 
     }
 
