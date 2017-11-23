@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.diogorborges.umbrella.R;
 import com.diogorborges.umbrella.UmbrellaApp;
@@ -20,6 +21,7 @@ import butterknife.ButterKnife;
 
 public class SettingsActivity extends AppCompatActivity implements SettingsContract.View {
 
+    public static final int ZIPCODE_SIZE = 5;
     @BindView(R.id.spinner_units)
     Spinner spinnerDropDownUnit;
 
@@ -64,6 +66,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsContr
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 presenter.onUserUpdateUnits(spinnerDropDownUnit.getSelectedItem().toString());
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
@@ -73,8 +76,17 @@ public class SettingsActivity extends AppCompatActivity implements SettingsContr
     @NonNull
     private View.OnClickListener onButtonUpdated() {
         return view -> {
-            presenter.onUserUpdateZipCode(editTextZipCode.getText().toString());
+            String selectedZipCode = editTextZipCode.getText().toString();
+            if (isZipCodeFormatSize(selectedZipCode)) {
+                presenter.onUserUpdateZipCode(selectedZipCode);
+                return;
+            }
+            Toast.makeText(this, R.string.zipcode_size_error, Toast.LENGTH_SHORT).show();
         };
+    }
+
+    private boolean isZipCodeFormatSize(String selectedZipCode) {
+        return selectedZipCode.length() == ZIPCODE_SIZE;
     }
 
     @Override

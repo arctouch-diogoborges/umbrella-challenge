@@ -64,16 +64,22 @@ public class MainPresenter implements MainContract.Presenter {
 
             @Override
             public void onNext(Result<WeatherData> weatherDataResult) {
-                if (hasResponse(weatherDataResult)) {
-                    view.showRecycler();
-                    WeatherData weatherData = weatherDataResult.response().body();
-                    view.clearForecastRecyclerView();
-                    createForecastDay(weatherData);
-                } else {
-                    view.showError();
+                if (hasAttachedView()) {
+                    if (hasResponse(weatherDataResult)) {
+                        view.showRecycler();
+                        WeatherData weatherData = weatherDataResult.response().body();
+                        view.clearForecastRecyclerView();
+                        createForecastDay(weatherData);
+                    } else {
+                        view.showError();
+                    }
                 }
             }
         });
+    }
+
+    private boolean hasAttachedView() {
+        return view != null;
     }
 
     private boolean hasResponse(Result<WeatherData> weatherDataResult) {
@@ -131,8 +137,8 @@ public class MainPresenter implements MainContract.Presenter {
         }
 
         view.showCurrentWeatherContent(createCurrentTemperature(currentTemp),
-                                       currentObservation.getWeather(),
-                                       currentObservation.getDisplayLocation().getFull());
+                currentObservation.getWeather(),
+                currentObservation.getDisplayLocation().getFull());
     }
 
     private boolean isCelcius(SharedPreferences settings) {

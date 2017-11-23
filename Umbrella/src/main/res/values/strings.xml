@@ -6,4 +6,5 @@
     <string name="title_units">Units</string>
     <string name="toast_no_zipCode">Please enter a Zip Code</string>
     <string name="error_text">Something went wrong, please try again!</string>
+    <string name="zipcode_size_error">Invalid ZipCode format</string>
 </resources>

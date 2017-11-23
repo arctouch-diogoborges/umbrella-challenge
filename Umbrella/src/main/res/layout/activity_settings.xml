@@ -17,6 +17,7 @@
     <EditText
         android:id="@+id/editText_zipCode"
         android:layout_width="match_parent"
+        android:inputType="number"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/transparent"
         android:hint="@string/zip_example"
