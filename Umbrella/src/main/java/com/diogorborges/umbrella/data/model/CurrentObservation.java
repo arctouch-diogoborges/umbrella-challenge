@@ -78,8 +78,6 @@ public class CurrentObservation {
   private DisplayLocation displayLocation;
   @JsonProperty("observation_location")
   private ObservationLocation observationLocation;
-//  @JsonProperty("estimated")
-//  private Estimated estimated;
   @JsonProperty("station_id")
   private String stationId;
   @JsonProperty("observation_time")
@@ -117,11 +115,11 @@ public class CurrentObservation {
   @JsonProperty("wind_mph")
   private Double windMph;
   @JsonProperty("wind_gust_mph")
-  private Integer windGustMph;
+  private String windGustMph;
   @JsonProperty("wind_kph")
   private Double windKph;
   @JsonProperty("wind_gust_kph")
-  private Integer windGustKph;
+  private String windGustKph;
   @JsonProperty("pressure_mb")
   private String pressureMb;
   @JsonProperty("pressure_in")
@@ -398,12 +396,12 @@ public class CurrentObservation {
   }
 
   @JsonProperty("wind_gust_mph")
-  public Integer getWindGustMph() {
+  public String getWindGustMph() {
     return windGustMph;
   }
 
   @JsonProperty("wind_gust_mph")
-  public void setWindGustMph(Integer windGustMph) {
+  public void setWindGustMph(String windGustMph) {
     this.windGustMph = windGustMph;
   }
 
@@ -418,12 +416,12 @@ public class CurrentObservation {
   }
 
   @JsonProperty("wind_gust_kph")
-  public Integer getWindGustKph() {
+  public String getWindGustKph() {
     return windGustKph;
   }
 
   @JsonProperty("wind_gust_kph")
-  public void setWindGustKph(Integer windGustKph) {
+  public void setWindGustKph(String windGustKph) {
     this.windGustKph = windGustKph;
   }
 
