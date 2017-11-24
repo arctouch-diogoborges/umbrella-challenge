@@ -2,6 +2,7 @@ package com.diogorborges.umbrella.presentation.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,10 +12,8 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.diogorborges.umbrella.R;
-import com.diogorborges.umbrella.data.local.SharedPreferencesManager;
 import com.diogorborges.umbrella.data.model.ForecastCondition;
 import com.diogorborges.umbrella.data.model.WeatherData;
-import com.diogorborges.umbrella.util.Constants;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,7 +22,6 @@ import java.util.List;
 
 import static android.util.TypedValue.COMPLEX_UNIT_DIP;
 import static android.util.TypedValue.applyDimension;
-import static com.diogorborges.umbrella.data.local.SharedPreferencesManager.*;
 import static com.diogorborges.umbrella.util.Constants.*;
 import static com.diogorborges.umbrella.util.Constants.TOMORROW;
 import static com.diogorborges.umbrella.util.StringFormatter.getFormattedDay;
@@ -56,7 +54,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
 
         String currentDate = null;
 
-        SharedPreferences settings = context.getSharedPreferences(UmbrellaPreferences.umbrellaPrefsFile, 0);
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
 
         int hours = 0;
 
@@ -143,7 +141,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ViewHo
     }
 
     private boolean isCelcius(SharedPreferences settings) {
-        return settings.getString(UmbrellaPreferences.units, "").equals("Celcius");
+        return settings.getString(context.getString(R.string.pref_display_units), "1").equals(CELCIUS);
     }
 
     private String createActualDateTitle(int actualPositionDayInt, int todayInt, int tomorrowInt, String weekdayName, String monthName, String mDay) {

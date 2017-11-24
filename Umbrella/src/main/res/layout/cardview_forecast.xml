@@ -9,7 +9,7 @@
     card_view:cardUseCompatPadding="true">
 
     <LinearLayout
-        android:padding="15dp"
+        android:padding="@dimen/default_margin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000000"
-            android:paddingBottom="15dp"
+            android:paddingBottom="@dimen/default_margin"
             android:textSize="22sp" />
 
         <View

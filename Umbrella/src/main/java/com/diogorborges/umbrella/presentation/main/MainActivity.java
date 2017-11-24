@@ -1,7 +1,10 @@
 package com.diogorborges.umbrella.presentation.main;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private static final String TAG = "MainActivity";
 
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList dayList;
 
     @BindView(R.id.myRecyclerView)
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         ButterKnife.bind(this);
 
         ((UmbrellaApp) getApplication()).getAppComponent().inject(this);
+
+        hideActionBar();
 
         initListener();
     }
@@ -132,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void setForecastRecyclerView(WeatherData weatherData, ArrayList<Integer> dayList) {
         this.dayList = dayList;
 
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new ForecastAdapter(this, this.dayList, weatherData);
         mRecyclerView.setAdapter(mAdapter);
@@ -151,6 +155,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void showRecycler() {
         mRecyclerView.setVisibility(View.VISIBLE);
         errorLayout.setVisibility(View.GONE);
+    }
+
+    private void hideActionBar() {
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
     }
 
 }

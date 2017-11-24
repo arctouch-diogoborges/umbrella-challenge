@@ -7,4 +7,10 @@
     <string name="toast_no_zipCode">Please enter a Zip Code</string>
     <string name="error_text">Something went wrong, please try again!</string>
     <string name="zipcode_size_error">Invalid ZipCode format</string>
+    <string name="title_activity_settings2">Settings</string>
+
+    <!-- Strings related to Settings -->
+    <string name="pref_display_zipcode">pref_display_zipcode</string>
+    <string name="pref_display_units">pref_display_units</string>
+
 </resources>

@@ -2,11 +2,12 @@ package com.diogorborges.umbrella.presentation.main;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.diogorborges.umbrella.data.local.SharedPreferencesManager;
+import com.diogorborges.umbrella.R;
 import com.diogorborges.umbrella.data.model.CurrentObservation;
 import com.diogorborges.umbrella.data.model.ForecastCondition;
 import com.diogorborges.umbrella.data.model.WeatherData;
@@ -46,7 +47,8 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     private boolean hasZipCode(SharedPreferences settings) {
-        return settings.getString(SharedPreferencesManager.UmbrellaPreferences.zipCode, "").isEmpty();
+        return settings.getString(context.getString(R.string.pref_display_zipcode), "").isEmpty();
+
     }
 
     private void loadForecastByZipCode(String currentZipCode) {
@@ -123,7 +125,7 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     private void displayCurrentWeather(WeatherData weather) {
-        SharedPreferences settings = context.getSharedPreferences(SharedPreferencesManager.UmbrellaPreferences.umbrellaPrefsFile, 0);
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
         CurrentObservation currentObservation = weather.getCurrentObservation();
 
         float currentTemp;
@@ -142,7 +144,7 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     private boolean isCelcius(SharedPreferences settings) {
-        return settings.getString(SharedPreferencesManager.UmbrellaPreferences.units, "").equals(CELCIUS);
+        return settings.getString(context.getString(R.string.pref_display_units), "1").equals(CELCIUS);
     }
 
     @NonNull
@@ -157,11 +159,11 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     private void loadZipCode() {
-        SharedPreferences settings = context.getSharedPreferences(SharedPreferencesManager.UmbrellaPreferences.umbrellaPrefsFile, 0);
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
         if (hasZipCode(settings)) {
             view.showSettings();
         } else {
-            String currentZipCode = settings.getString(SharedPreferencesManager.UmbrellaPreferences.zipCode, "");
+            String currentZipCode = settings.getString(context.getString(R.string.pref_display_zipcode), "");
             loadForecastByZipCode(currentZipCode);
         }
     }
